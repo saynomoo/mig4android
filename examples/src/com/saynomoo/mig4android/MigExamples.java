@@ -18,7 +18,6 @@ public class MigExamples extends Activity
         setContentView(new MigLayout(this) {{
             setLayoutConstraints("wrap");
             setColumnConstraints("[right][fill,sizegroup]unrel[right][fill,sizegroup]");
-            setRowConstraints("");
             addSeparator(this, "General");
             addLabel(this, "Company", "gap indent");
             addTextField(this, "span,growx");

@@ -46,8 +46,8 @@ public class MigLayout extends ViewGroup {
     private transient ViewGroupWrapper parentWrapper = new ViewGroupWrapper(this);
     private transient Map<ComponentWrapper, CC> ccMap = new HashMap<ComponentWrapper, CC>(0);
 
-    private LC lc = null;
-    private AC colSpecs = null, rowSpecs = null;
+    private LC lc = new LC();
+    private AC colSpecs = new AC(), rowSpecs = new AC();
 
     private transient Grid grid = null;
 
