@@ -1,12 +1,6 @@
 package com.saynomoo.mig4android;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.text.AndroidCharacter;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 public class QuickStart extends MigActivity{
     @Override
