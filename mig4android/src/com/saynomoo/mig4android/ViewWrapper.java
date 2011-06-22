@@ -146,7 +146,9 @@ public class ViewWrapper implements ComponentWrapper {
     }
 
     public final void setBounds(int x, int y, int width, int height) {
-        c.layout(x, y, x + width, y + height);
+        int xNoPad = x-c.getPaddingLeft();
+        int yNoPad = y-c.getPaddingTop();
+        c.layout(xNoPad, yNoPad, xNoPad + width, yNoPad + height);
     }
 
     public boolean isVisible() {
