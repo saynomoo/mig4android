@@ -59,6 +59,7 @@ public class MigLayout extends ViewGroup {
     private transient int lastModCount = PlatformDefaults.getModCount();
     private transient int lastHash = -1;
     private transient Paint outlinePaint = createOutlinePaint();
+    private transient Paint cellPaint = createCellPaint();
 
     private transient ArrayList<LayoutCallback> callbackList = null;
 
@@ -132,7 +133,7 @@ public class MigLayout extends ViewGroup {
                 if(debugRects!=null){
                     canvas.drawRect(0, 0, getWidth(), getHeight(), outlinePaint);
                     for (int[] rect : debugRects) {
-                        canvas.drawRect(rect[0], rect[1], rect[2]+rect[0], rect[3]+rect[1], outlinePaint);
+                        canvas.drawRect(rect[0], rect[1], rect[2]+rect[0], rect[3]+rect[1], cellPaint);
                     }
                 }
             } catch (NoSuchFieldException e) {
@@ -210,6 +211,12 @@ public class MigLayout extends ViewGroup {
         paint.setStrokeCap(Paint.Cap.SQUARE);
         paint.setPathEffect(new DashPathEffect(new float[]{2, 4}, 0));
         paint.setStrokeWidth(1);
+        return paint;
+    }
+    private Paint createCellPaint() {
+        Paint paint = createOutlinePaint();
+        paint.setARGB(255, 255, 0, 0);
+        paint.setPathEffect(new DashPathEffect(new float[]{2, 3}, 0));
         return paint;
     }
 
