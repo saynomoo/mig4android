@@ -130,6 +130,7 @@ public class MigLayout extends ViewGroup {
                 field.setAccessible(true);
                 ArrayList<int[]> debugRects = (ArrayList<int[]>)field.get(grid);
                 if(debugRects!=null){
+                    canvas.drawRect(0, 0, getWidth(), getHeight(), outlinePaint);
                     for (int[] rect : debugRects) {
                         canvas.drawRect(rect[0], rect[1], rect[2]+rect[0], rect[3]+rect[1], outlinePaint);
                     }
