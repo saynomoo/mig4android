@@ -30,22 +30,14 @@ package com.saynomoo.mig4android;
  *
  */
 
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import net.miginfocom.layout.ComponentWrapper;
 import net.miginfocom.layout.ContainerWrapper;
-import net.miginfocom.layout.PlatformDefaults;
 
 import java.lang.reflect.Method;
 
-/**
- */
 public class ViewWrapper implements ComponentWrapper {
-    /**
-     * Debug color for component bounds outline.
-     */
-    private static int DB_COMP_OUTLINE = Color.rgb(0, 0, 200);
 
     private final View c;
 
@@ -176,9 +168,7 @@ public class ViewWrapper implements ComponentWrapper {
         return h;
     }
 
-    public final void paintDebugOutline() {
-        //TODO
-    }
+    public void paintDebugOutline() {}
 
     public int getComponetType(boolean disregardScrollPane) {
         return 0;

@@ -1,11 +1,16 @@
 package com.saynomoo.mig4android;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.DashPathEffect;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import net.miginfocom.layout.*;
 
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
 import java.util.*;
 
 /*
@@ -51,10 +56,9 @@ public class MigLayout extends ViewGroup {
 
     private transient Grid grid = null;
 
-    private transient java.util.Timer debugTimer = null;
-    private transient long curDelay = -1;
     private transient int lastModCount = PlatformDefaults.getModCount();
     private transient int lastHash = -1;
+    private transient Paint outlinePaint = createOutlinePaint();
 
     private transient ArrayList<LayoutCallback> callbackList = null;
 
@@ -117,40 +121,27 @@ public class MigLayout extends ViewGroup {
             callbackList.remove(callback);
     }
 
-    /**
-     * Sets the debugging state for this layout manager instance. If debug is turned on a timer will repaint the last laid out parent
-     * with debug information on top.
-     * <p/>
-     * Red fill and dashed darked red outline is used to indicate occupied cells in the grid. Blue dashed outline indicate indicate
-     * component bounds set.
-     * <p/>
-     * Note that debug can also be set on the layout constraints. There it will be persisted. The calue set here will not. See the class
-     * JavaDocs for information.
-     *
-     * @param b       <code>true</code> means debug is turned on.
-     */
-    private synchronized void setDebug(boolean b) {
-        if (b && (debugTimer == null || curDelay != getDebugMillis())) {
-            if (debugTimer != null)
-                debugTimer.cancel();
-
-            debugTimer = new Timer(true);
-            curDelay = getDebugMillis();
-//			debugTimer.schedule(new MyDebugRepaintTask(this), curDelay, curDelay);
-
-            ContainerWrapper pCW = parentWrapper.getParent();
-            ViewGroup parent = pCW != null ? (ViewGroup) pCW.getComponent() : null;
-            if (parent != null)
-                parent.requestLayout();
-
-        } else if (!b && debugTimer != null) {
-            debugTimer.cancel();
-            debugTimer = null;
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if(grid!=null && isDebug()){
+            try {
+                final Field field = Grid.class.getDeclaredField("debugRects");
+                field.setAccessible(true);
+                ArrayList<int[]> debugRects = (ArrayList<int[]>)field.get(grid);
+                if(debugRects!=null){
+                    for (int[] rect : debugRects) {
+                        canvas.drawRect(rect[0], rect[1], rect[2]+rect[0], rect[3]+rect[1], outlinePaint);
+                    }
+                }
+            } catch (NoSuchFieldException e) {
+            } catch (IllegalAccessException e) {
+            }
         }
     }
 
     private boolean isDebug() {
-        return debugTimer != null;
+        return getDebugMillis() > 0;
     }
 
     private int getDebugMillis() {
@@ -173,11 +164,13 @@ public class MigLayout extends ViewGroup {
         for (ComponentWrapper componentWrapper : ccMap.keySet()){
             hash += componentWrapper.getLayoutHashCode();
         }
+        if(isDebug()){
+            hash += 777129;
+        }
         if (hash != lastHash) {
             lastHash = hash;
             grid = null;
         }
-        setDebug(getDebugMillis() > 0);
         if (grid == null){
             grid = new Grid(parentWrapper, lc, rowSpecs, colSpecs, ccMap, callbackList);
         }
@@ -207,31 +200,18 @@ public class MigLayout extends ViewGroup {
         setMeasuredDimension(w, h);
     }
 
-    //TODO
-/*
-    private static class MyDebugRepaintTask extends TimerTask
-	{
-		private final WeakReference<MigLayout> layoutRef;
+    private Paint createOutlinePaint() {
+        Paint paint = new Paint();
+        paint.setDither(true);
+        paint.setARGB(255, 0, 0, 200);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeJoin(Paint.Join.MITER);
+        paint.setStrokeCap(Paint.Cap.SQUARE);
+        paint.setPathEffect(new DashPathEffect(new float[]{2, 4}, 0));
+        paint.setStrokeWidth(1);
+        return paint;
+    }
 
-		private MyDebugRepaintTask(MigLayout layout)
-		{
-			this.layoutRef = new WeakReference<MigLayout>(layout);
-		}
-
-		public void run()
-		{
-			final MigLayout layout = layoutRef.get();
-			if (layout != null && layout.grid != null) {
-                View.post(new Runnable () {
-					public void run () {
-						if (layout.grid != null)
-							layout.grid.paintDebug();
-					}
-				});
-			}
-		}
-	}
-*/
     public static class LayoutParams extends ViewGroup.LayoutParams {
         private CC constraints;
 
