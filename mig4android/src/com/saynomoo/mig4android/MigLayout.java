@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import net.miginfocom.layout.*;
 
-import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.util.*;
 
@@ -131,15 +130,22 @@ public class MigLayout extends ViewGroup {
                 field.setAccessible(true);
                 ArrayList<int[]> debugRects = (ArrayList<int[]>)field.get(grid);
                 if(debugRects!=null){
-                    canvas.drawRect(0, 0, getWidth(), getHeight(), outlinePaint);
+                    drawComponentOutline(canvas, this);
                     for (int[] rect : debugRects) {
                         canvas.drawRect(rect[0], rect[1], rect[2]+rect[0], rect[3]+rect[1], cellPaint);
+                    }
+                    for (ViewWrapper wrapper : parentWrapper.getComponents()) {
+                        drawComponentOutline(canvas, wrapper.getComponent());
                     }
                 }
             } catch (NoSuchFieldException e) {
             } catch (IllegalAccessException e) {
             }
         }
+    }
+
+    private void drawComponentOutline(Canvas canvas, View view) {
+        canvas.drawRect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom(), outlinePaint);
     }
 
     private boolean isDebug() {
