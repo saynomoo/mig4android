@@ -49,7 +49,7 @@ public class ViewWrapper implements ComponentWrapper {
         return c.getBaseline();
     }
 
-    public final Object getComponent() {
+    public final View getComponent() {
         return c;
     }
 
