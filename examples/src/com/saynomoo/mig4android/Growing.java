@@ -1,13 +1,9 @@
 package com.saynomoo.mig4android;
 
-import android.os.Bundle;
-import android.view.ViewGroup;
-
 public class Growing extends MigActivity{
     @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(new GrowingView(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+    public MigLayout createLayout() {
+        return new GrowingView();
     }
 
     class GrowingView extends MigLayout {

@@ -1,11 +1,23 @@
 package com.saynomoo.mig4android;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MigActivity extends Activity {
+public abstract class MigActivity extends Activity {
+
+    protected MigLayout migLayout;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        migLayout = createLayout();
+        setContentView(migLayout);
+    }
+
+    public abstract MigLayout createLayout();
 
     void addSeparator(MigLayout migLayout, String label) {
         TextView textView = addLabel(migLayout, label, "gapbottom 1, span, split 2, aligny center");

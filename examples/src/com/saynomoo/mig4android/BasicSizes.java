@@ -1,13 +1,9 @@
 package com.saynomoo.mig4android;
 
-import android.os.Bundle;
-import android.view.ViewGroup;
-
 public class BasicSizes extends MigActivity{
     @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(new BasicSizesView(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+    public MigLayout createLayout() {
+        return new BasicSizesView();
     }
 
     class BasicSizesView extends MigLayout {

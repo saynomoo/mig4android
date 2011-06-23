@@ -1,12 +1,9 @@
 package com.saynomoo.mig4android;
 
-import android.os.Bundle;
-
 public class QuickStart extends MigActivity{
     @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(new QuicStartView());
+    public MigLayout createLayout() {
+        return new QuicStartView();
     }
 
     class QuicStartView extends MigLayout {
