@@ -13,8 +13,8 @@ public class Growing extends MigActivity{
             setRowConstraints("[]15[]");
             addLabel(this, "Fixed", "");
             addLabel(this, "Gets all extra space", "wrap");
-            addTextField(this, "");
-            addTextField(this, "");
+            addTextField(this, "     ", "");
+            addTextField(this, "     ", "");
         }
     }
 
