@@ -31,9 +31,13 @@ public abstract class MigActivity extends Activity {
         migLayout.addView(separatorLine, "gapleft rel, gaptop para, growx");
     }
 
-    void addTextField(MigLayout migLayout, String layoutConstraints) {
+    void addTextField(MigLayout migLayout, String text, String layoutConstraints) {
         EditText editText = new EditText(this);
+        editText.setText(text);
         migLayout.addView(editText, layoutConstraints);
+    }
+    void addTextField(MigLayout migLayout, String layoutConstraints) {
+        addTextField(migLayout, "", layoutConstraints);
     }
 
     TextView addLabel(MigLayout migLayout, final String text, String layoutConstraints) {
