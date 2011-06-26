@@ -2,9 +2,12 @@ package com.saynomoo.mig4android;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import net.miginfocom.layout.LayoutUtil;
 
 public abstract class MigActivity extends Activity {
 
@@ -38,5 +41,21 @@ public abstract class MigActivity extends Activity {
         textView.setText(text);
         migLayout.addView(textView, layoutConstraints);
         return textView;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        final MenuItem item = menu.add("Toggle debug");
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                final int current = LayoutUtil.getGlobalDebugMillis();
+                final int millis = current <= 0 ? 1000 : 0;
+                LayoutUtil.setGlobalDebugMillis(millis);
+                migLayout.invalidate();
+                migLayout.requestLayout();
+                return true;
+            }
+        });
+        return true;
     }
 }
