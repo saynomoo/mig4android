@@ -16,9 +16,9 @@ public class BasicSizes extends MigActivity{
             addLabel(this, "Pref", "wrap");
 
             addLabel(this, "new TextField(15)", "");
-            addTextField(this, "");
-            addTextField(this, "");
-            addTextField(this, "");
+            addTextField(this, "               ", "wmin 30");
+            addTextField(this, "               ", "wmin 30");
+            addTextField(this, "               ", "wmin 30");
         }
     }
 
