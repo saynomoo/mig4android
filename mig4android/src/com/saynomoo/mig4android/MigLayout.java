@@ -203,9 +203,17 @@ public class MigLayout extends ViewGroup {
         int spec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
         measureChildren(spec, spec);
         checkCache();
-        int w = LayoutUtil.getSizeSafe(grid != null ? grid.getWidth() : null, LayoutUtil.PREF);
-        int h = LayoutUtil.getSizeSafe(grid != null ? grid.getHeight() : null, LayoutUtil.PREF);
-        setMeasuredDimension(w, h);
+        final int width = dimensionBySpec(widthMeasureSpec, grid != null ? grid.getWidth() : null);
+        final int height = dimensionBySpec(heightMeasureSpec, grid != null ? grid.getHeight() : null);
+        setMeasuredDimension(width, height);
+    }
+
+    private int dimensionBySpec(int measureSpec, int[] migSizes) {
+        if(MeasureSpec.getMode(measureSpec)==MeasureSpec.AT_MOST){
+            return LayoutUtil.getSizeSafe(migSizes, LayoutUtil.PREF);
+        }else{
+            return MeasureSpec.getSize(measureSpec);
+        }
     }
 
     private Paint createOutlinePaint() {
