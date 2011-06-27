@@ -82,23 +82,11 @@ public class ViewWrapper implements ComponentWrapper {
     }
 
     public final int getMinimumHeight(int sz) {
-        if (GET_SUGGESTED_MINIMUM_HEIGHT != null) {
-            try {
-                return (Integer) GET_SUGGESTED_MINIMUM_HEIGHT.invoke(c);
-            } catch (Exception e) {
-            }
-        }
-        return 0;
+        return c.getMeasuredHeight();
     }
 
     public final int getMinimumWidth(int sz) {
-        if (GET_SUGGESTED_MINIMUM_WIDTH != null) {
-            try {
-                return (Integer) GET_SUGGESTED_MINIMUM_WIDTH.invoke(c);
-            } catch (Exception e) {
-            }
-        }
-        return 0;
+        return c.getMeasuredWidth();
     }
 
     public final int getPreferredHeight(int sz) {
@@ -187,14 +175,4 @@ public class ViewWrapper implements ComponentWrapper {
         return getComponent().equals(((ComponentWrapper) o).getComponent());
     }
 
-    private static Method GET_SUGGESTED_MINIMUM_HEIGHT = null;
-    private static Method GET_SUGGESTED_MINIMUM_WIDTH = null;
-
-    static {
-        try {
-            GET_SUGGESTED_MINIMUM_HEIGHT = View.class.getDeclaredMethod("getSuggestedMinimumHeight");
-            GET_SUGGESTED_MINIMUM_WIDTH = View.class.getDeclaredMethod("getSuggestedMinimumWidth");
-        } catch (Exception e) {
-        }
-    }
 }
