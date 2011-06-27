@@ -35,6 +35,7 @@ public abstract class MigActivity extends Activity {
     void addTextField(MigLayout migLayout, String text, String layoutConstraints) {
         EditText editText = new EditText(this);
         editText.setText(text);
+        editText.setTextSize(new TextView(this).getTextSize());
         migLayout.addView(editText, layoutConstraints);
     }
     void addTextField(MigLayout migLayout, String layoutConstraints) {
