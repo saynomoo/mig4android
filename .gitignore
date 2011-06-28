@@ -1,3 +1,6 @@
+project/boot
+project/plugins
+target
 gen
 out
 .idea/workspace.xml
