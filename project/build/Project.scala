@@ -1,19 +1,18 @@
+import _root_.sbt.Path
 import sbt._
 import java.io.File
 
 class Project(info: ProjectInfo) extends ParentProject(info){
 
-  lazy val mig4android = project("mig4android")
-  lazy val examples = project("examples", "Mig4Android Exapmles", new ExamplesProject(_), mig4android)
+  lazy val mig4android = project("mig4android", "Mig4Android", new Mig4AndroidProject(_))
+  lazy val examples = project("examples", "Mig4Android Examples", new ExamplesProject(_), mig4android)
+
+  class Mig4AndroidProject(info: ProjectInfo) extends DefaultProject(info){
+    override def unmanagedClasspath = super.unmanagedClasspath +++ (Path.fromFile(System.getenv("ANDROID_SDK_HOME")) / "platforms" / "android-7" / "android.jar")
+  }
 
   class ExamplesProject(info: ProjectInfo) extends AndroidProject(info){
-    override def dependencyPath = "jars"
-    override def androidPlatformName = "android-7"
-
-    override lazy val androidSdkPath = Path.userHome / "android" / "android-sdk-linux_86"
-    lazy val c = super.compileAction
-    lazy val e = super.startEmulatorAction
-    lazy val d = super.startDeviceAction
+    def androidPlatformName = "android-7"
   }
 }
 
