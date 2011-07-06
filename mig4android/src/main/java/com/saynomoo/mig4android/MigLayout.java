@@ -74,7 +74,9 @@ public class MigLayout extends ViewGroup {
     public void addView(View view, CC constraints){
         addView(view, new LayoutParams(constraints));
     }
-
+    public ViewGroupWrapper getParentWrapper() {
+        return parentWrapper;
+    }
     public LC getLayoutConstraints(){
         return lc;
     }
