@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.saynomoo.mig4android.resize.ComponentResizer;
 import net.miginfocom.layout.LayoutUtil;
 
 public abstract class MigActivity extends Activity {
@@ -59,6 +60,24 @@ public abstract class MigActivity extends Activity {
                 LayoutUtil.setGlobalDebugMillis(millis);
                 migLayout.invalidate();
                 migLayout.requestLayout();
+                return true;
+            }
+        });
+        final MenuItem edit = menu.add("Toggle edit");
+        edit.setCheckable(true);
+        edit.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            View.OnLongClickListener editListener = new View.OnLongClickListener() {
+                public boolean onLongClick(View v) {
+                    ComponentResizer.openResizer(v);
+                    return true;
+                }
+            };
+            public boolean onMenuItemClick(MenuItem item) {
+                edit.setChecked(!edit.isChecked());
+                final View.OnLongClickListener listenerToSet = edit.isChecked() ? editListener : null;
+                for (ViewWrapper w : migLayout.getParentWrapper().getComponents()) {
+                    w.getComponent().setOnLongClickListener(listenerToSet);
+                }
                 return true;
             }
         });
