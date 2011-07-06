@@ -26,12 +26,6 @@ public class AnimateLayout extends MigActivity{
                   public void onClick(View v) {
                   }
               });
-              setOnLongClickListener(new OnLongClickListener() {
-                  public boolean onLongClick(View v) {
-                      ComponentResizer.openResizer(v);
-                      return true;
-                  }
-              });
             }}, "");
             addView(new Button(getContext()){{
               setText("Up");
