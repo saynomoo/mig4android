@@ -3,7 +3,6 @@ package com.saynomoo.mig4android;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import com.saynomoo.mig4android.resize.ComponentResizer;
 
 public class AnimateLayout extends MigActivity{
     @Override
