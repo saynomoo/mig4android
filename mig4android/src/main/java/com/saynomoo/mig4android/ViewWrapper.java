@@ -74,11 +74,17 @@ public class ViewWrapper implements ComponentWrapper {
     }
 
     public final int getScreenLocationX() {
-        return c.getLeft(); //TODO?
+        return getScreenLocation()[0];
     }
 
     public final int getScreenLocationY() {
-        return c.getTop(); //TODO?
+        return getScreenLocation()[1];
+    }
+
+    public int[] getScreenLocation(){
+        int[] loc = new int[2];
+        c.getLocationOnScreen(loc);
+        return loc;
     }
 
     public final int getMinimumHeight(int sz) {
