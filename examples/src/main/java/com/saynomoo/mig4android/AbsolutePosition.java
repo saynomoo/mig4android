@@ -1,7 +1,5 @@
 package com.saynomoo.mig4android;
 
-import android.widget.TextView;
-
 public class AbsolutePosition extends MigActivity{
     @Override
     public MigLayout createLayout() {
