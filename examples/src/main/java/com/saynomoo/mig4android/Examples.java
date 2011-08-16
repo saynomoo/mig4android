@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 public class Examples extends ListActivity{
-    Class[] activities = new Class[]{QuickStart.class, Growing.class, BasicSizes.class, AnimateLayout.class};
+    Class[] activities = new Class[]{QuickStart.class, Growing.class, BasicSizes.class, AbsolutePosition.class, AnimateLayout.class};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

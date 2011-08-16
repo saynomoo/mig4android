@@ -29,6 +29,12 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name=".AbsolutePosition"
+                  android:label="AbsolutePosition">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity android:name=".AnimateLayout"
                   android:label="AnimateLayout">
             <intent-filter>
