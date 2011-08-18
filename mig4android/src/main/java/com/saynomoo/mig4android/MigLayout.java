@@ -252,4 +252,7 @@ public class MigLayout extends ViewGroup {
             return constraints;
         }
     }
+    static {
+        PlatformDefaults.setDefaultDPI(160);
+    }
 }
