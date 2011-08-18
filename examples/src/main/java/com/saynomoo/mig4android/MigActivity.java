@@ -49,6 +49,12 @@ public abstract class MigActivity extends Activity {
         migLayout.addView(textView, layoutConstraints);
         return textView;
     }
+    void addConstraintLabel(MigLayout migLayout, final String constraint) {
+        migLayout.addView(new TextView(this) {{
+            setText(constraint);
+            setBackgroundResource(android.R.color.background_light);
+        }}, constraint);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
