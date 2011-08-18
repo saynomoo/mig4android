@@ -30,10 +30,14 @@ package com.saynomoo.mig4android;
  *
  */
 
+import android.content.Context;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import net.miginfocom.layout.ComponentWrapper;
 import net.miginfocom.layout.ContainerWrapper;
+import net.miginfocom.layout.PlatformDefaults;
 
 import java.lang.reflect.Method;
 
@@ -54,7 +58,17 @@ public class ViewWrapper implements ComponentWrapper {
     }
 
     public final float getPixelUnitFactor(boolean isHor) {
-        return 1f; //TODO
+        switch (PlatformDefaults.getLogicalPixelBase()) {
+            case PlatformDefaults.BASE_SCALE_FACTOR:
+                Float s = isHor ? PlatformDefaults.getHorizontalScaleFactor() : PlatformDefaults.getVerticalScaleFactor();
+                if (s != null)
+                    return s;
+                return (isHor ? getHorizontalScreenDPI() : getVerticalScreenDPI()) / (float) PlatformDefaults.getDefaultDPI();
+            case PlatformDefaults.BASE_FONT_SIZE:
+                //TODO
+            default:
+                return 1f;
+        }
     }
 
     public final int getX() {
