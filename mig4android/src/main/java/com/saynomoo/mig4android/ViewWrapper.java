@@ -116,11 +116,21 @@ public class ViewWrapper implements ComponentWrapper {
     }
 
     public int getHorizontalScreenDPI() {
-        return (int) c.getResources().getDisplayMetrics().xdpi;
+        return (int) getDisplayMetrics().xdpi;
     }
 
     public int getVerticalScreenDPI() {
-        return (int) c.getResources().getDisplayMetrics().ydpi;
+        return (int) getDisplayMetrics().ydpi;
+    }
+
+    private transient DisplayMetrics displayMetrics = null;
+    public DisplayMetrics getDisplayMetrics() {
+        if(displayMetrics==null){
+            DisplayMetrics dm = new DisplayMetrics();
+            ((WindowManager)c.getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(dm);
+            displayMetrics = dm;
+        }
+        return displayMetrics;
     }
 
     public final int getScreenWidth() {
