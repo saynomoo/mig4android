@@ -148,11 +148,11 @@ public class ViewWrapper implements ComponentWrapper {
     }
 
     public final int getScreenWidth() {
-        return c.getResources().getDisplayMetrics().widthPixels;
+        return getDisplayMetrics().widthPixels;
     }
 
     public final int getScreenHeight() {
-        return c.getResources().getDisplayMetrics().heightPixels;
+        return getDisplayMetrics().heightPixels;
     }
 
     public final boolean hasBaseline() {
