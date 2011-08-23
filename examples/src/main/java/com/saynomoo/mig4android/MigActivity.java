@@ -20,6 +20,7 @@ public abstract class MigActivity extends Activity {
         super.onCreate(savedInstanceState);
         migLayout = createLayout();
         setContentView(migLayout, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+        toggleDebug();
     }
 
     public abstract MigLayout createLayout();
@@ -61,11 +62,7 @@ public abstract class MigActivity extends Activity {
         final MenuItem item = menu.add("Toggle debug");
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
-                final int current = LayoutUtil.getGlobalDebugMillis();
-                final int millis = current <= 0 ? 1000 : 0;
-                LayoutUtil.setGlobalDebugMillis(millis);
-                migLayout.invalidate();
-                migLayout.requestLayout();
+                toggleDebug();
                 return true;
             }
         });
@@ -88,5 +85,13 @@ public abstract class MigActivity extends Activity {
             }
         });
         return true;
+    }
+
+    private void toggleDebug() {
+        final int current = LayoutUtil.getGlobalDebugMillis();
+        final int millis = current <= 0 ? 1000 : 0;
+        LayoutUtil.setGlobalDebugMillis(millis);
+        migLayout.invalidate();
+        migLayout.requestLayout();
     }
 }
