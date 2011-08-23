@@ -24,7 +24,7 @@ public abstract class MigActivity extends Activity {
 
     public abstract MigLayout createLayout();
 
-    void addSeparator(MigLayout migLayout, String label) {
+    protected void addSeparator(MigLayout migLayout, String label) {
         TextView textView = addLabel(migLayout, label, "gaptop para, span, split 2");
         textView.setTextColor(getResources().getColor(R.color.label));
         View separatorLine = new View(this);
@@ -33,23 +33,23 @@ public abstract class MigActivity extends Activity {
         migLayout.addView(separatorLine, "gapleft rel, gaptop para, growx");
     }
 
-    void addTextField(MigLayout migLayout, String text, String layoutConstraints) {
+    protected void addTextField(MigLayout migLayout, String text, String layoutConstraints) {
         EditText editText = new EditText(this);
         editText.setText(text);
         editText.setTextSize(new TextView(this).getTextSize());
         migLayout.addView(editText, layoutConstraints);
     }
-    void addTextField(MigLayout migLayout, String layoutConstraints) {
+    protected void addTextField(MigLayout migLayout, String layoutConstraints) {
         addTextField(migLayout, "", layoutConstraints);
     }
 
-    TextView addLabel(MigLayout migLayout, final String text, String layoutConstraints) {
+    protected TextView addLabel(MigLayout migLayout, final String text, String layoutConstraints) {
         TextView textView = new TextView(this);
         textView.setText(text);
         migLayout.addView(textView, layoutConstraints);
         return textView;
     }
-    void addConstraintLabel(MigLayout migLayout, final String constraint) {
+    protected void addConstraintLabel(MigLayout migLayout, final String constraint) {
         migLayout.addView(new TextView(this) {{
             setText(constraint);
             setBackgroundResource(android.R.color.background_light);
