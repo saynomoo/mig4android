@@ -189,7 +189,11 @@ public class MigLayout extends ViewGroup {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         checkCache();
-        int[] box = new int[]{l, t, r - l, b - t};
+        final int contentLeft = getPaddingLeft();
+        final int contentTop = getPaddingTop();
+        final int contentWidth = getWidth() - contentLeft - getPaddingRight();
+        final int contentHeight = getHeight() - contentTop - getPaddingBottom();
+        int[] box = new int[]{contentLeft, contentTop, contentWidth, contentHeight};
 
         final boolean layoutAgain = grid.layout(box, lc.getAlignX(), lc.getAlignY(), isDebug(), true);
 
