@@ -132,9 +132,10 @@ public class MigLayout extends ViewGroup {
                 field.setAccessible(true);
                 ArrayList<int[]> debugRects = (ArrayList<int[]>)field.get(grid);
                 if(debugRects!=null){
-                    drawComponentOutline(canvas, this);
+                    drawLayoutCell(canvas);
+                    drawLayoutOutline(canvas);
                     for (int[] rect : debugRects) {
-                        canvas.drawRect(rect[0], rect[1], rect[2]+rect[0], rect[3]+rect[1], cellPaint);
+                        drawChildCell(canvas, rect);
                     }
                     for (ViewWrapper wrapper : parentWrapper.getComponents()) {
                         drawComponentOutline(canvas, wrapper.getComponent());
@@ -144,6 +145,18 @@ public class MigLayout extends ViewGroup {
             } catch (IllegalAccessException e) {
             }
         }
+    }
+
+    private void drawLayoutCell(Canvas canvas) {
+        canvas.drawRect(0, 1, getWidth(), getHeight(), cellPaint);
+    }
+
+    private void drawLayoutOutline(Canvas canvas) {
+        canvas.drawRect(getPaddingLeft(), 1+getPaddingTop(), getWidth()-getPaddingLeft()-getPaddingRight(), getHeight() - getPaddingTop() - getPaddingBottom(), outlinePaint);
+    }
+
+    private void drawChildCell(Canvas canvas, int[] rect) {
+        canvas.drawRect(rect[0], rect[1], rect[2]+rect[0], rect[3]+rect[1], cellPaint);
     }
 
     private void drawComponentOutline(Canvas canvas, View view) {
