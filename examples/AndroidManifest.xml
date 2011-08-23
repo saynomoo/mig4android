@@ -29,13 +29,13 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".AbsolutePosition"
+        <activity android:name=".test.AbsolutePosition"
                   android:label="AbsolutePosition">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".LogicalPixels"
+        <activity android:name=".test.LogicalPixels"
                   android:label="LogicalPixels">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

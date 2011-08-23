@@ -1,6 +1,9 @@
-package com.saynomoo.mig4android;
+package com.saynomoo.mig4android.test;
 
-public class LogicalPixels extends MigActivity{
+import com.saynomoo.mig4android.MigActivity;
+import com.saynomoo.mig4android.MigLayout;
+
+public class LogicalPixels extends MigActivity {
     @Override
     public MigLayout createLayout() {
         return new LogicalPixelsView();

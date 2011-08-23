@@ -1,6 +1,9 @@
-package com.saynomoo.mig4android;
+package com.saynomoo.mig4android.test;
 
-public class AbsolutePosition extends MigActivity{
+import com.saynomoo.mig4android.MigActivity;
+import com.saynomoo.mig4android.MigLayout;
+
+public class AbsolutePosition extends MigActivity {
     @Override
     public MigLayout createLayout() {
         return new AbsolutePositionView();
