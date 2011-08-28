@@ -59,5 +59,11 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name=".test.TextWrap"
+                  android:label="TextWrap">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest> 
