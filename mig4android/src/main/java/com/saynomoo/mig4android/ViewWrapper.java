@@ -164,6 +164,8 @@ public class ViewWrapper implements ComponentWrapper {
     }
 
     public final void setBounds(int x, int y, int width, int height) {
+        c.getLayoutParams().width = width;
+        c.getLayoutParams().height = height;
         c.layout(x, y, x + width, y + height);
     }
 
