@@ -16,18 +16,7 @@ public class ComponentResizer {
         final MigLayout.LayoutParams oldParams = (MigLayout.LayoutParams) view.getLayoutParams();
         final EditText input = new EditText(view.getContext());
         input.setText(oldParams.getConstraintString());
-        input.addTextChangedListener(new TextWatcher() {
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            public void afterTextChanged(Editable s) {}
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                try {
-                    final CC cc = ConstraintParser.parseComponentConstraint(s.toString());
-                    view.setLayoutParams(new MigLayout.LayoutParams(cc));
-                } catch (Exception e) {
-                }
-            }
-        });
-        new AlertDialog.Builder(view.getContext())
+        final AlertDialog alert = new AlertDialog.Builder(view.getContext())
             .setTitle("Update Layout")
             .setView(input)
             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -39,6 +28,19 @@ public class ComponentResizer {
                 }
             }
         }).show();
+        input.addTextChangedListener(new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void afterTextChanged(Editable s) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    view.setLayoutParams(new MigLayout.LayoutParams(s.toString()));
+                    alert.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(true);
+
+                } catch (Exception e) {
+                    alert.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(false);
+                }
+            }
+        });
     }
 
 }
