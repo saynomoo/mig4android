@@ -259,6 +259,7 @@ public class MigLayout extends ViewGroup {
 
     public static class LayoutParams extends ViewGroup.LayoutParams {
         private CC constraints;
+        private String constraintString;
 
         public LayoutParams(CC cc) {
             super(WRAP_CONTENT, WRAP_CONTENT);
@@ -267,10 +268,15 @@ public class MigLayout extends ViewGroup {
 
         public LayoutParams(String constraints) {
             this(ConstraintParser.parseComponentConstraint(constraints));
+            this.constraintString = constraints;
         }
 
         public CC getConstraints() {
             return constraints;
+        }
+
+        public String getConstraintString() {
+            return constraintString;
         }
     }
     @Override
