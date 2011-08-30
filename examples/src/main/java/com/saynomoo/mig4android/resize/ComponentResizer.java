@@ -15,7 +15,7 @@ public class ComponentResizer {
     public static void openResizer(final View view){
         final MigLayout.LayoutParams oldParams = (MigLayout.LayoutParams) view.getLayoutParams();
         final EditText input = new EditText(view.getContext());
-        input.setText(IDEUtil.getConstraintString(oldParams.getConstraints(), false));
+        input.setText(oldParams.getConstraintString());
         input.addTextChangedListener(new TextWatcher() {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             public void afterTextChanged(Editable s) {}
