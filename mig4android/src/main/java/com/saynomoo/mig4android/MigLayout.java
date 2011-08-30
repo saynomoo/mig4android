@@ -225,7 +225,7 @@ public class MigLayout extends ViewGroup {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int spec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
         measureChildren(spec, spec);
-        checkCache();
+        onLayout(false, 0, 0, 0, 0);
         final int width = dimensionBySpec(widthMeasureSpec, grid != null ? grid.getWidth() : null);
         final int height = dimensionBySpec(heightMeasureSpec, grid != null ? grid.getHeight() : null);
         setMeasuredDimension(width, height);

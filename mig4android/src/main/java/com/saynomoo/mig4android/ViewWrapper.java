@@ -39,8 +39,6 @@ import net.miginfocom.layout.ComponentWrapper;
 import net.miginfocom.layout.ContainerWrapper;
 import net.miginfocom.layout.PlatformDefaults;
 
-import java.lang.reflect.Method;
-
 public class ViewWrapper implements ComponentWrapper {
 
     private final View c;
@@ -166,7 +164,16 @@ public class ViewWrapper implements ComponentWrapper {
     public final void setBounds(int x, int y, int width, int height) {
         c.getLayoutParams().width = width;
         c.getLayoutParams().height = height;
+        measureAgainIfNeedsShrinking(width, height);
         c.layout(x, y, x + width, y + height);
+    }
+
+    private void measureAgainIfNeedsShrinking(int width, int height) {
+        if(c.getMeasuredWidth()>width){
+            c.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        }else if(c.getMeasuredHeight()>height){
+            c.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY));
+        }
     }
 
     public boolean isVisible() {
