@@ -13,7 +13,8 @@ class Project(info: ProjectInfo) extends ParentProject(info){
     override def packageSrcJar= defaultJarPath("-sources.jar")
     val sourceArtifact = Artifact.sources(artifactID)
     override def packageToPublishActions = super.packageToPublishActions ++ Seq(packageSrc)
-    lazy val publishTo = Resolver.file("GitHub", new File((Path.userHome / "saynomoo.github.com" / "maven").toString))
+    lazy val publishTo = Resolver.file("GitHub", new File((Path.userHome / "maven").toString))
+    //override def managedStyle = ManagedStyle.Maven
   }
 
   class ExamplesProject(info: ProjectInfo) extends AndroidProject(info){
