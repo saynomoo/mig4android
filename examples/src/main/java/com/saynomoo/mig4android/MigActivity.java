@@ -31,7 +31,7 @@ public abstract class MigActivity extends Activity {
         View separatorLine = new View(this);
         separatorLine.setMinimumHeight(1);
         separatorLine.setBackgroundColor(getResources().getColor(R.color.separator));
-        migLayout.addView(separatorLine, "gapleft rel, gaptop para, growx");
+        migLayout.addView(separatorLine, "gapleft rel, gaptop para, growx, hmax 1");
     }
 
     protected void addTextField(MigLayout migLayout, String text, String layoutConstraints) {
