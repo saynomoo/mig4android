@@ -26,7 +26,6 @@ public class MigLayoutInListView extends MigActivity {
                 public View getView(final int position, View convertView, ViewGroup parent) {
                     return new MigLayout(getContext()) {{
                         addLabel(this, "Item " + position, "");
-                        setLayoutParams(new ListView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 30));
                     }};
                 }
             });

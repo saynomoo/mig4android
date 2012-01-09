@@ -231,7 +231,8 @@ public class MigLayout extends ViewGroup {
     }
 
     private int dimensionBySpec(int measureSpec, int[] migSizes) {
-        if(MeasureSpec.getMode(measureSpec)==MeasureSpec.AT_MOST){
+        final int mode = MeasureSpec.getMode(measureSpec);
+        if(mode==MeasureSpec.AT_MOST || mode==MeasureSpec.UNSPECIFIED){
             return LayoutUtil.getSizeSafe(migSizes, LayoutUtil.PREF);
         }else{
             return MeasureSpec.getSize(measureSpec);
