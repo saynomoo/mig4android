@@ -185,7 +185,7 @@ public class ViewWrapper implements ComponentWrapper {
     }
 
     public int getLayoutHashCode() {
-        int h = getWidth() + (getHeight() << 5);
+        int h = getWidth() + (getHeight() << 5) + (c.getMeasuredWidth() << 7) + (c.getMeasuredHeight() << 9);
         if (isVisible()) {
             h += 1324511;
         }

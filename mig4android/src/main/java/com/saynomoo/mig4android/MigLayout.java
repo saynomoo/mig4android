@@ -230,6 +230,14 @@ public class MigLayout extends ViewGroup {
         setMeasuredDimension(width, height);
     }
 
+    @Override
+    protected void measureChild(View child, int parentWidthMeasureSpec, int parentHeightMeasureSpec) {
+        final ViewGroup.LayoutParams lp = child.getLayoutParams();
+        lp.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+        lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        super.measureChild(child, parentWidthMeasureSpec, parentHeightMeasureSpec);
+    }
+
     private int dimensionBySpec(int measureSpec, int[] migSizes) {
         final int mode = MeasureSpec.getMode(measureSpec);
         if(mode==MeasureSpec.AT_MOST || mode==MeasureSpec.UNSPECIFIED){
