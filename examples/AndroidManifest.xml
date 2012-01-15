@@ -77,5 +77,11 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name=".test.DynamicPreferredSize"
+                  android:label="DynamicPreferredSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest> 
