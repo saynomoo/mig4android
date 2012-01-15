@@ -34,14 +34,15 @@ public abstract class MigActivity extends Activity {
         migLayout.addView(separatorLine, "gapleft rel, gaptop para, growx, hmax 1");
     }
 
-    protected void addTextField(MigLayout migLayout, String text, String layoutConstraints) {
+    protected EditText addTextField(MigLayout migLayout, String text, String layoutConstraints) {
         EditText editText = new EditText(this);
         editText.setText(text);
         editText.setTextSize(new TextView(this).getTextSize());
         migLayout.addView(editText, layoutConstraints);
+        return editText;
     }
-    protected void addTextField(MigLayout migLayout, String layoutConstraints) {
-        addTextField(migLayout, "", layoutConstraints);
+    protected EditText addTextField(MigLayout migLayout, String layoutConstraints) {
+        return addTextField(migLayout, "", layoutConstraints);
     }
 
     protected TextView addLabel(MigLayout migLayout, final String text, String layoutConstraints) {
