@@ -233,7 +233,7 @@ public class MigLayout extends ViewGroup {
     @Override
     protected void measureChild(View child, int parentWidthMeasureSpec, int parentHeightMeasureSpec) {
         final ViewGroup.LayoutParams lp = child.getLayoutParams();
-        lp.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+        lp.width = ViewGroup.LayoutParams.WRAP_CONTENT; //TODO Is there more accurate approximation from CC (maxw / pos?)
         lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         super.measureChild(child, parentWidthMeasureSpec, parentHeightMeasureSpec);
     }
