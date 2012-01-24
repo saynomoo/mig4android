@@ -148,19 +148,19 @@ public class MigLayout extends ViewGroup {
     }
 
     private void drawLayoutCell(Canvas canvas) {
-        canvas.drawRect(0, 1, getWidth(), getHeight(), cellPaint);
+        canvas.drawRect(0, 1, getWidth()-1, getHeight()-1, cellPaint);
     }
 
     private void drawLayoutOutline(Canvas canvas) {
-        canvas.drawRect(getPaddingLeft(), 1+getPaddingTop(), getWidth()-getPaddingLeft()-getPaddingRight(), getHeight() - getPaddingTop() - getPaddingBottom(), outlinePaint);
+        canvas.drawRect(getPaddingLeft(), 1+getPaddingTop(), getWidth()-getPaddingLeft()-getPaddingRight()-1, getHeight()-getPaddingTop()-getPaddingBottom()-1, outlinePaint);
     }
 
     private void drawChildCell(Canvas canvas, int[] rect) {
-        canvas.drawRect(rect[0], rect[1], rect[2]+rect[0], rect[3]+rect[1], cellPaint);
+        canvas.drawRect(rect[0], rect[1]+1, rect[2]+rect[0]-1, rect[3]+rect[1]-1, cellPaint);
     }
 
     private void drawComponentOutline(Canvas canvas, View view) {
-        canvas.drawRect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom(), outlinePaint);
+        canvas.drawRect(view.getLeft(), view.getTop()+1, view.getRight()-1, view.getBottom()-1, outlinePaint);
     }
 
     private boolean isDebug() {
