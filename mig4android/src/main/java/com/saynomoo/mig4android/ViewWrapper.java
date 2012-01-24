@@ -163,10 +163,8 @@ public class ViewWrapper implements ComponentWrapper {
     }
 
     private void measureAgainIfNeedsShrinking(int width, int height) {
-        if(c.getMeasuredWidth()>width){
-            c.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-        }else if(c.getMeasuredHeight()>height){
-            c.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY));
+        if(c.getMeasuredWidth()>width || c.getMeasuredHeight()>height){
+            c.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.AT_MOST), View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.AT_MOST));
         }
     }
 
