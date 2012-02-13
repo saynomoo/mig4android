@@ -265,6 +265,11 @@ public class MigLayout extends ViewGroup {
         return paint;
     }
 
+    private static String param(AttributeSet attrs, String name, String defaultValue) {
+        String xmlParams = attrs.getAttributeValue(null, name);
+        return xmlParams != null ? xmlParams : defaultValue;
+    }
+
     public static class LayoutParams extends ViewGroup.LayoutParams {
         private CC constraints;
         private String constraintString;
@@ -294,8 +299,7 @@ public class MigLayout extends ViewGroup {
 
     @Override
     public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
-        String xmlParams = attrs.getAttributeValue(null, "layout_constraints");
-        String params = xmlParams != null ? xmlParams : "";
+        String params = param(attrs, "layout_constraints", "");
         return new LayoutParams(params);
     }
 
