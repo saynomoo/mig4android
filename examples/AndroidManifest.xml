@@ -90,6 +90,12 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name=".test.WidthDeterminedFromSibling"
+                  android:label="WidthDeterminedFromSibling">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity android:name=".test.GrowingListView"
                   android:label="GrowingListView">
             <intent-filter>
