@@ -30,11 +30,9 @@ package com.saynomoo.mig4android;
  *
  */
 
-import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import net.miginfocom.layout.ComponentWrapper;
 import net.miginfocom.layout.ContainerWrapper;
 import net.miginfocom.layout.PlatformDefaults;
@@ -158,13 +156,13 @@ public class ViewWrapper implements ComponentWrapper {
     public final void setBounds(int x, int y, int width, int height) {
         c.getLayoutParams().width = width;
         c.getLayoutParams().height = height;
-        measureAgainIfNeedsShrinking(width, height);
+        measureAgainIfNeedsResize(width, height);
         c.layout(x, y, x + width, y + height);
     }
 
-    private void measureAgainIfNeedsShrinking(int width, int height) {
-        if(c.getMeasuredWidth()>width || c.getMeasuredHeight()>height){
-            c.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.AT_MOST), View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.AT_MOST));
+    private void measureAgainIfNeedsResize(int width, int height) {
+        if(c.getMeasuredWidth()!=width || c.getMeasuredHeight()!=height){
+            c.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY));
         }
     }
 
