@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.saynomoo.mig4android.MigLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+    <TextView layout_constraints="width 100, wrap" android:text="TextView"/>
+    <EditText layout_constraints="width 200, height 300" />
+
+</com.saynomoo.mig4android.MigLayout>

@@ -294,7 +294,9 @@ public class MigLayout extends ViewGroup {
 
     @Override
     public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
-        return new LayoutParams("");
+        String xmlParams = attrs.getAttributeValue(null, "layout_constraints");
+        String params = xmlParams != null ? xmlParams : "";
+        return new LayoutParams(params);
     }
 
     @Override
