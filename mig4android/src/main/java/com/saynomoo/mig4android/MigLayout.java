@@ -67,6 +67,12 @@ public class MigLayout extends ViewGroup {
     }
     public MigLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+        String columnConstraints = param(attrs, "column_constraints", null);
+        if(columnConstraints!=null) setColumnConstraints(columnConstraints);
+        String rowConstraints = param(attrs, "row_constraints", null);
+        if(rowConstraints!=null) setRowConstraints(rowConstraints);
+        String layoutConstraints = param(attrs, "layout_constraints", null);
+        if(layoutConstraints!=null) setLayoutConstraints(layoutConstraints);
     }
     public void addView(View view, String constraints){
         addView(view, new LayoutParams(constraints));
