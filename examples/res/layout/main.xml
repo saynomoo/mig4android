@@ -11,6 +11,6 @@
     <TextView android:text="text2"/>
     <TextView android:text="text3"/>
     <TextView android:text="text4"/>
-    <EditText layout_constraints="width 200, height 300" />
+    <EditText component_constraints="width 200, height 300" />
 
 </com.saynomoo.mig4android.MigLayout>

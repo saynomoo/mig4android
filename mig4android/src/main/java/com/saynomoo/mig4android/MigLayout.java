@@ -305,7 +305,7 @@ public class MigLayout extends ViewGroup {
 
     @Override
     public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
-        String params = param(attrs, "layout_constraints", "");
+        String params = param(attrs, "component_constraints", "");
         return new LayoutParams(params);
     }
 
