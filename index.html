@@ -55,6 +55,35 @@
 
   <p>BSD</p>
 
+  <h2>Usage</h2>
+  <h3>Progammatically</h3>
+  The base component is MigLayout, which is a descendant of ViewGroup. There is three methods which can be used to configure the layout: setLayoutConstraints, setColumnConstraints and setRowConstraints.
+  These methods take the corresponding constraints as defined in <a href="http://migcalendar.com/miglayout/cheatsheet.html">MiG Layout Cheat Sheet</a>. Other Views can be added to the layout with method addView, optionally providing the component constraints, also defined in the Cheat Sheet.
+  <p>Example:</p>
+  <pre>
+    class ExampleLayout extends MigLayout {
+        public ExampleLayout(Context context) {
+            super(context);
+            setLayoutConstraints("wrap 4, debug 1");
+            setColumnConstraints("[]15[75px]25[min]25[]");
+            setRowConstraints("[]15");
+
+            addView(label("label1"), "skip");
+            addView(label("label2"));
+            addView(label("label3"), "wrap");
+            addView(label("label4"));
+            addView(label("label5"), "wmin 30");
+            addView(label("label6"), "wmin 30");
+            addView(label("label7"), "wmin 30");
+        }
+        private TextView label(final String label){
+            return new TextView(getContext()) {{
+                setText(label);
+            }};
+        }
+    }
+  </pre>
+
   <h2>Contributing</h2>
 
   <p>Contributions are more than welcome. Please fork the
