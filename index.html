@@ -108,6 +108,17 @@
   <h3>More examples</h3>
   More examples can be found from the <a href="https://github.com/saynomoo/mig4android/tree/master/examples">examples module</a>.
 
+  <h2>Developing</h2>
+  The source distribution comes with idea project files, which should work as long as the android sdk is installed. There is also a <a href="https://github.com/harrah/xsbt/wiki">sbt</a> build configuration (v 0.7.7) in place.
+  For example using sbt to build the library:
+  <pre>
+    $ ./sbt package
+  </pre>
+  When called from project root, it produces the library jar at path:
+  <pre>
+    ./mig4android/target/mig4android-0.9.8.jar
+  </pre>
+
   <h2>Contributing</h2>
 
   <p>Contributions are more than welcome. Please fork the
