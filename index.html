@@ -84,6 +84,28 @@
     }
   </pre>
 
+  <h3>From xml</h3>
+  All the methods used in the programmatic example are usable also from xml layout. The previous layout would translate to:
+  <pre>
+&lt;com.saynomoo.mig4android.MigLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+              android:layout_width=&quot;fill_parent&quot;
+              android:layout_height=&quot;fill_parent&quot;
+              layout_constraints=&quot;wrap 4, debug 1&quot;
+              column_constraints=&quot;[]15[75px]25[min]25[]&quot;
+              row_constraints=&quot;[]15&quot;
+        &gt;
+    &lt;TextView android:text=&quot;label1&quot; layout_constraints=&quot;skip&quot;/&gt;
+    &lt;TextView android:text=&quot;label2&quot; /&gt;
+    &lt;TextView android:text=&quot;label3&quot; layout_constraints=&quot;wrap&quot;/&gt;
+    &lt;TextView android:text=&quot;label4&quot; /&gt;
+    &lt;TextView android:text=&quot;label5&quot; layout_constraints=&quot;wmin 30&quot;/&gt;
+    &lt;TextView android:text=&quot;label6&quot; layout_constraints=&quot;wmin 30&quot;/&gt;
+    &lt;TextView android:text=&quot;label7&quot; layout_constraints=&quot;wmin 30&quot;/&gt;
+
+&lt;/com.saynomoo.mig4android.MigLayout&gt;
+  </pre>
+
+
   <h2>Contributing</h2>
 
   <p>Contributions are more than welcome. Please fork the
