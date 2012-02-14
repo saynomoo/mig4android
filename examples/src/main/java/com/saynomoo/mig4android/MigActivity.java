@@ -34,21 +34,21 @@ public abstract class MigActivity extends Activity {
         migLayout.addView(separatorLine, "gapleft rel, gaptop para, growx, hmax 1");
     }
 
-    protected EditText addTextField(MigLayout migLayout, String text, String layoutConstraints) {
+    protected EditText addTextField(MigLayout migLayout, String text, String componentConstraints) {
         EditText editText = new EditText(this);
         editText.setText(text);
         editText.setTextSize(new TextView(this).getTextSize());
-        migLayout.addView(editText, layoutConstraints);
+        migLayout.addView(editText, componentConstraints);
         return editText;
     }
-    protected EditText addTextField(MigLayout migLayout, String layoutConstraints) {
-        return addTextField(migLayout, "", layoutConstraints);
+    protected EditText addTextField(MigLayout migLayout, String componentConstraints) {
+        return addTextField(migLayout, "", componentConstraints);
     }
 
-    protected TextView addLabel(MigLayout migLayout, final String text, String layoutConstraints) {
+    protected TextView addLabel(MigLayout migLayout, final String text, String componentConstraints) {
         TextView textView = new TextView(this);
         textView.setText(text);
-        migLayout.addView(textView, layoutConstraints);
+        migLayout.addView(textView, componentConstraints);
         return textView;
     }
     protected void addConstraintLabel(MigLayout migLayout, final String constraint) {
