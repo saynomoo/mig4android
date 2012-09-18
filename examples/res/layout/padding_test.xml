@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.saynomoo.mig4android.MigLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:padding="10dp"
+                                    android:background="#aaff00ff"
+                                    layout_constraints="debug, ins 10"
+        >
+  <Button android:text="First"
+          android:paddingLeft="10dp"
+          android:paddingTop="5dp"
+          android:paddingRight="10dp"
+          android:paddingBottom="5dp"
+          android:background="#aaff0000"
+          component_constraints="grow, push"/>
+  <Button android:text="Second"
+          android:paddingLeft="10dp"
+          android:paddingTop="5dp"
+          android:paddingRight="10dp"
+          android:paddingBottom="5dp"
+          android:background="#aa00ff00"
+          component_constraints="grow, push"/>
+
+</com.saynomoo.mig4android.MigLayout>
