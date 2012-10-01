@@ -122,7 +122,7 @@ public class ViewWrapper implements ComponentWrapper {
     }
 
     public final ContainerWrapper getParent() {
-        return new ViewGroupWrapper((ViewGroup) c.getParent());
+        return ViewGroup.class.isInstance(c.getParent()) ? new ViewGroupWrapper((ViewGroup) c.getParent()) : null;
     }
 
     public int getHorizontalScreenDPI() {
