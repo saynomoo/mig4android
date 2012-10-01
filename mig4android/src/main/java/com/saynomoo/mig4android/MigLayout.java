@@ -320,6 +320,10 @@ public class MigLayout extends ViewGroup {
     }
 
     static {
-        PlatformDefaults.setDefaultDPI(160);
+        try {
+            PlatformDefaults.setDefaultDPI(160);
+        } catch (NoSuchMethodError e) {
+            //For some reason IDEA designer throws this
+        }
     }
 }
