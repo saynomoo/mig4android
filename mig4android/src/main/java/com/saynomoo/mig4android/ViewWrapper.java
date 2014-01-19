@@ -97,19 +97,30 @@ public class ViewWrapper implements ComponentWrapper {
         return loc;
     }
 
+    private void measureWidth(int sz) {
+        int maxHeight = sz ==-1 ? Short.MAX_VALUE : sz;
+        c.measure(View.MeasureSpec.makeMeasureSpec(Short.MAX_VALUE, View.MeasureSpec.AT_MOST), View.MeasureSpec.makeMeasureSpec(maxHeight, View.MeasureSpec.AT_MOST));
+    }
+
+    private void measureHeight(int sz) {
+        int maxWidth = (sz!=-1 && sz < c.getMeasuredWidth()) ? sz : c.getMeasuredWidth();
+        c.measure(View.MeasureSpec.makeMeasureSpec(maxWidth, View.MeasureSpec.AT_MOST), View.MeasureSpec.makeMeasureSpec(Short.MAX_VALUE, View.MeasureSpec.AT_MOST));
+    }
+
     public final int getMinimumHeight(int sz) {
         return c.getMeasuredHeight();
     }
-
     public final int getMinimumWidth(int sz) {
         return c.getMeasuredWidth();
     }
 
     public final int getPreferredHeight(int sz) {
+        measureHeight(sz);
         return c.getMeasuredHeight();
     }
 
     public final int getPreferredWidth(int sz) {
+        measureWidth(sz);
         return c.getMeasuredWidth();
     }
 
