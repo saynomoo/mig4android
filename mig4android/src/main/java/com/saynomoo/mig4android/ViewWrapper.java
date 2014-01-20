@@ -40,9 +40,11 @@ import net.miginfocom.layout.PlatformDefaults;
 public class ViewWrapper implements ComponentWrapper {
 
     private final View c;
+    protected WrapperFactory factory;
 
-    public ViewWrapper(View c) {
+    public ViewWrapper(View c, WrapperFactory factory) {
         this.c = c;
+        this.factory = factory;
     }
 
     public final int getBaseline(int width, int height) {
@@ -133,7 +135,7 @@ public class ViewWrapper implements ComponentWrapper {
     }
 
     public final ContainerWrapper getParent() {
-        return ViewGroup.class.isInstance(c.getParent()) ? new ViewGroupWrapper((ViewGroup) c.getParent()) : null;
+        return ViewGroup.class.isInstance(c.getParent()) ? factory.viewGroupWrapper((ViewGroup) c.getParent()) : null;
     }
 
     public int getHorizontalScreenDPI() {

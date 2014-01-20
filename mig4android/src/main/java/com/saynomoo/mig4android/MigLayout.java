@@ -46,8 +46,8 @@ import java.util.*;
 /**
 Originally based on net.miginfocom.swl.MigLayout
  */
-public class MigLayout extends ViewGroup {
-    private transient ViewGroupWrapper parentWrapper = new ViewGroupWrapper(this);
+public class MigLayout extends ViewGroup implements WrapperFactory {
+    private transient ViewGroupWrapper parentWrapper = viewGroupWrapper(this);
     private transient Map<ComponentWrapper, CC> ccMap = new HashMap<ComponentWrapper, CC>(0);
 
     private LC lc = new LC();
@@ -274,6 +274,14 @@ public class MigLayout extends ViewGroup {
     private static String param(AttributeSet attrs, String name, String defaultValue) {
         String xmlParams = attrs.getAttributeValue(null, name);
         return xmlParams != null ? xmlParams : defaultValue;
+    }
+
+    public ViewWrapper viewWrapper(View view) {
+        return new ViewWrapper(view, this);
+    }
+
+    public ViewGroupWrapper viewGroupWrapper(ViewGroup group) {
+        return new ViewGroupWrapper(group, this);
     }
 
     public static class LayoutParams extends ViewGroup.LayoutParams {

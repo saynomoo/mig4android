@@ -40,8 +40,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class ViewGroupWrapper extends ViewWrapper implements ContainerWrapper {
-    public ViewGroupWrapper(ViewGroup c) {
-        super(c);
+    public ViewGroupWrapper(ViewGroup c, WrapperFactory factory) {
+        super(c, factory);
     }
 
     public ViewGroup viewGroup() {
@@ -53,7 +53,7 @@ public final class ViewGroupWrapper extends ViewWrapper implements ContainerWrap
         int size = viewGroup.getChildCount();
         ViewWrapper[] cws = new ViewWrapper[size];
         for (int i = 0; i < size; i++)
-            cws[i] = new ViewWrapper(viewGroup.getChildAt(i));
+            cws[i] = factory.viewWrapper(viewGroup.getChildAt(i));
         return cws;
     }
     public Map<ComponentWrapper, CC> constraintMap(){
@@ -62,7 +62,7 @@ public final class ViewGroupWrapper extends ViewWrapper implements ContainerWrap
         Map<ComponentWrapper, CC> constraints = new HashMap<ComponentWrapper, CC>((int)(1.5*size));
         for (int i = 0; i < size; i++) {
             View child = viewGroup.getChildAt(i);
-            constraints.put(new ViewWrapper(child), ((MigLayout.LayoutParams)child.getLayoutParams()).getConstraints());
+            constraints.put(factory.viewWrapper(child), ((MigLayout.LayoutParams)child.getLayoutParams()).getConstraints());
         }
         return constraints;
     }
